@@ -119,10 +119,22 @@ var ani = {
             console.log("完了");
                 // rewrdResult[0].length = 0;
                 // rewrdResult[1].length = 0;
-                rewrdResult = {
+               
+             utils.confirm('您已抽过！是否重新抽取？', function() {
+            // alert('ooooo');
+            // rewrdResult[0].length = 0;
+            // rewrdResult[1].length = 0;
+             rewrdResult = {
                     '0': [],
                     '1': [],
                 };
+            utils.removeItem('rewrdResult');
+            // drawLottery(obj);
+            window.drawErr = false;
+        }, function() {
+            window.drawErr = true;
+            return;
+        })
         //     rewrdResult[1].length = 0;
         }
         // if (rewrdResult[0].length === 18) {
@@ -137,6 +149,7 @@ var ani = {
         //     return;
         // })
         //  }
+        var totalArray = rewrdResult[0].concat(rewrdResult[1]);
         var _this = this;
         var index = ele.index('.staff-list');
         var resultCon = $('.message li').eq($('.people').eq(index).index())[0];
