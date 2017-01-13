@@ -115,19 +115,28 @@ var ani = {
     easeOutAni: function(ele, cb) { // 减速运行到目标位置
         var totalArray = rewrdResult[0].concat(rewrdResult[1]);
         var totalNum = reward[0].number - reward[1].number;  //
-
-        if (rewrdResult[0].length === reward[0].number || rewrdResult[1].length === reward[1].number) {
+        if(totalNum === totalArray.length){
+            console.log("完了");
+                // rewrdResult[0].length = 0;
+                // rewrdResult[1].length = 0;
+                rewrdResult = {
+                    '0': [],
+                    '1': [],
+                };
+        //     rewrdResult[1].length = 0;
+        }
+        // if (rewrdResult[0].length === 18) {
         // alert(0000);
-        utils.confirm('您已抽过！是否重新抽取？', function() {
+        // utils.confirm('您已抽过！是否重新抽取？', function() {
         
-            rewrdResult[0].length = 0;
-            rewrdResult[1].length = 0;
+        //     rewrdResult[0].length = 0;
+        //     rewrdResult[1].length = 0;
         
-        }, function() {
-            window.drawErr = true;
-            return;
-        })
-         }
+        // }, function() {
+        //     window.drawErr = true;
+        //     return;
+        // })
+        //  }
         var _this = this;
         var index = ele.index('.staff-list');
         var resultCon = $('.message li').eq($('.people').eq(index).index())[0];
@@ -136,9 +145,11 @@ var ani = {
         var awardIndex =  parseFloat(absTop / ani.oneHeight).toFixed(2) ; 
         var reducedIndex = Math.floor(awardIndex); 
        
-        console.log(totalNum);
-        console.log('reducedIndex',reducedIndex);
-        
+        console.log('awardIndex:'+awardIndex);
+        console.log('reducedIndex:'+reducedIndex);
+        console.log('totalNum: '+ totalNum);
+        console.log('reducedIndex:'+reducedIndex);
+        utils.setItem('rewrdResult', rewrdResult);
         // var rewardIndex = $('.bonus_set_title').attr('reward');
 
    // if(newwwArr.length > 3 && isInArray(reducedIndex, newwwArr) == false){
@@ -166,7 +177,6 @@ var ani = {
     
     console.log(rewrdResult[0]);
     console.log(rewrdResult[1]);
-    utils.setItem('rewrdResult', rewrdResult);
         var imgAward = $('.staff-list').eq(index).find('img[index= '+reducedIndex+']');
         var staffId = imgAward.attr('staff-id');
         var name = imgAward.attr('name');
