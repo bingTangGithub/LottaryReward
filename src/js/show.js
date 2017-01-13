@@ -120,7 +120,7 @@ var ani = {
     easeOutAni: function (ele, cb) { // 减速运行到目标位置
         var totalArray = rewrdResult[0].concat(rewrdResult[1]);
         var totalNum = reward[0].number - reward[1].number;  //
-        if (totalNum === totalArray.length) {
+        if (totalNum >= totalArray.length) {
             console.log("完了");
             // rewrdResult[0].length = 0;
             // rewrdResult[1].length = 0;
@@ -169,6 +169,7 @@ var ani = {
         // }
         //   newwwArr.push(reducedIndex);
         while (isInArray(reducedIndex, totalArray)) {
+            console.log("always");
             reducedIndex = Math.floor(Math.random() * staff.length);
         }
 
@@ -179,8 +180,8 @@ var ani = {
             rewrdResult[1].push(reducedIndex);
         }
 
-        console.log(rewrdResult[0]);
-        console.log(rewrdResult[1]);
+        // console.log(`rewardResult ${rewrdResult[0]} and ${rewrdResult[1]}`);
+        console.log(`rewrdResult:${rewrdResult[0]} \n ${rewrdResult[1]}`);
         var imgAward = $('.staff-list').eq(index).find('img[index= ' + reducedIndex + ']');
         var staffId = imgAward.attr('staff-id');
         var name = imgAward.attr('name');
@@ -230,6 +231,8 @@ $('.bonus_set ul li').on('click', function () {
 $('.start').on('click', function () {
     // var rewardIndex = $('.bonus_set_title').attr('reward');
     rewardIndex = $('.bonus_set_title').attr('reward');
+
+    console.log(`==== rewardIndex:${rewardIndex} rewardResult:${rewrdResult}`);
     if (ani.ing && rewardIndex == 'null') {
         return;
     }

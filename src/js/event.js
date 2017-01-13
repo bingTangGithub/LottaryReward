@@ -48,12 +48,12 @@
                 })
             }
         }
-    }
+    };
     e.one = function(key, fn) {
         this.isOne = true;
         this.on(key, fn);
         this.isOne = false;
-    }
+    };
     e.off = function(key, fn) {
         if (this.cache[key]) {
             if (fn) {
@@ -64,7 +64,7 @@
             }
         }
         this.offlineCache = [];
-    }
+    };
     e.trigger = function(key, value) {
         var _this = this;
         var stack = this.cache[key];
@@ -83,6 +83,6 @@
                 })
             }
         }
-    }
+    };
     return e;
-})
+});

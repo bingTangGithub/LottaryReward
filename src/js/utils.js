@@ -21,20 +21,20 @@ utils.find = function(query, data) {
         }
     }
     return result;
-}
+};
 
 
 utils.getItem = function(key) {
     return JSON.parse(localStorage.getItem(key));
-}
+};
 
 // value -> string | obj
 utils.setItem = function(key, value) {
     return localStorage.setItem(key, JSON.stringify(value));
-}
+};
 
 utils.removeItem = function(key) {
     localStorage.removeItem(key);
-}
+};
 
 module.exports = utils;
